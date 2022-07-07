@@ -4,7 +4,7 @@
     "title": "OpenAPI Document on Azure Functions",
     "version": "1.0.0"
   },
-  "host": "localhost:7168",
+  "host": "Enter your host here",
   "basePath": "/api",
   "schemes": [
     "http"
