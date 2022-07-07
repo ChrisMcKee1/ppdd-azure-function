@@ -149,7 +149,7 @@
       "type": "object",
       "properties": {
         "count": {
-          "format": "int64",
+          "format": "int32",
           "type": "integer"
         },
         "entries": {
@@ -164,7 +164,7 @@
       "type": "object",
       "properties": {
         "count": {
-          "format": "int64",
+          "format": "int32",
           "type": "integer"
         },
         "categories": {
@@ -194,7 +194,6 @@
           "type": "string"
         },
         "Link": {
-          "format": "uri",
           "type": "string"
         },
         "Category": {
