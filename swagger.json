@@ -1,0 +1,206 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "OpenAPI Document on Azure Functions",
+    "version": "1.0.0"
+  },
+  "host": "localhost:7168",
+  "basePath": "/api",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/GetAPICategory": {
+      "get": {
+        "tags": [
+          "Public APIs"
+        ],
+        "operationId": "Run",
+        "produces": [
+          "Application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "The OK response",
+            "schema": {
+              "$ref": "#/definitions/categories"
+            }
+          }
+        }
+      }
+    },
+    "/GetAPIRandom": {
+      "get": {
+        "tags": [
+          "Public APIs"
+        ],
+        "operationId": "Run",
+        "produces": [
+          "Application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "title",
+            "description": "The **title** parameter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "description",
+            "description": "The **description** parameter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "auth",
+            "description": "The **auth** parameter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "https",
+            "description": "The **https** parameter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "cors",
+            "description": "The **cors** parameter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "description": "The **category** parameter",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The OK response",
+            "schema": {
+              "$ref": "#/definitions/api"
+            }
+          }
+        }
+      }
+    },
+    "/GetPublicAPIs": {
+      "get": {
+        "tags": [
+          "Public APIs"
+        ],
+        "operationId": "Run",
+        "produces": [
+          "Application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "title",
+            "description": "The **title** parameter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "description",
+            "description": "The **description** parameter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "auth",
+            "description": "The **auth** parameter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "https",
+            "description": "The **https** parameter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "cors",
+            "description": "The **cors** parameter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "description": "The **category** parameter",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The OK response",
+            "schema": {
+              "$ref": "#/definitions/api"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "api": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "entries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/entry"
+          }
+        }
+      }
+    },
+    "categories": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "entry": {
+      "type": "object",
+      "properties": {
+        "API": {
+          "type": "string"
+        },
+        "Description": {
+          "type": "string"
+        },
+        "Auth": {
+          "type": "string"
+        },
+        "HTTPS": {
+          "type": "boolean"
+        },
+        "Cors": {
+          "type": "string"
+        },
+        "Link": {
+          "format": "uri",
+          "type": "string"
+        },
+        "Category": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

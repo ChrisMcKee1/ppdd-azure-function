@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Attributes;
-using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Enums;
 using Microsoft.OpenApi.Models;
 using Model;
 using System.Net;
@@ -22,8 +21,12 @@ namespace PublicAPIs
 
         [FunctionName("GetPublicAPIs")]
         [OpenApiOperation(operationId: "Run", tags: new[] { "Public APIs" })]
-        [OpenApiSecurity("function_key", SecuritySchemeType.ApiKey, Name = "code", In = OpenApiSecurityLocationType.Query)]
         [OpenApiParameter(name: "title", In = ParameterLocation.Query, Required = false, Type = typeof(string), Description = "The **title** parameter")]
+        [OpenApiParameter(name: "description", In = ParameterLocation.Query, Required = false, Type = typeof(string), Description = "The **description** parameter")]
+        [OpenApiParameter(name: "auth", In = ParameterLocation.Query, Required = false, Type = typeof(string), Description = "The **auth** parameter")]
+        [OpenApiParameter(name: "https", In = ParameterLocation.Query, Required = false, Type = typeof(string), Description = "The **https** parameter")]
+        [OpenApiParameter(name: "cors", In = ParameterLocation.Query, Required = false, Type = typeof(string), Description = "The **cors** parameter")]
+        [OpenApiParameter(name: "category", In = ParameterLocation.Query, Required = false, Type = typeof(string), Description = "The **category** parameter")]
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "Application/json", bodyType: typeof(Api), Description = "The OK response")]
         public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req
