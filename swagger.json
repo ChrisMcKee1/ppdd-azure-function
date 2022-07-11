@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "OpenAPI Document on Azure Functions",
+    "title": "Public API",
     "version": "1.0.0"
   },
   "host": "Enter your host here",
