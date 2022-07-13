@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Attributes;
 using Microsoft.OpenApi.Models;
 using Model;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace PublicAPIs
@@ -20,7 +20,7 @@ namespace PublicAPIs
         }
 
         [FunctionName("GetAPIRandom")]
-        [OpenApiOperation(operationId: "Run", tags: new[] { "Public APIs" })]
+        [OpenApiOperation(operationId: "Random", tags: new[] { "Public APIs" })]
         [OpenApiParameter(name: "title", In = ParameterLocation.Query, Required = false, Type = typeof(string), Description = "The **title** parameter")]
         [OpenApiParameter(name: "description", In = ParameterLocation.Query, Required = false, Type = typeof(string), Description = "The **description** parameter")]
         [OpenApiParameter(name: "auth", In = ParameterLocation.Query, Required = false, Type = typeof(string), Description = "The **auth** parameter")]
@@ -28,7 +28,7 @@ namespace PublicAPIs
         [OpenApiParameter(name: "cors", In = ParameterLocation.Query, Required = false, Type = typeof(string), Description = "The **cors** parameter")]
         [OpenApiParameter(name: "category", In = ParameterLocation.Query, Required = false, Type = typeof(string), Description = "The **category** parameter")]
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "Application/json", bodyType: typeof(Api), Description = "The OK response")]
-        public async Task<IActionResult> Run(
+        public async Task<HttpResponseMessage> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req
         )
         {

@@ -1,14 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Model;
+﻿using Model;
+using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace PublicAPIs
 {
     public interface IShared
     {
-        Task<IActionResult> SendRequest(string endpointType, RequestModel model);
-        Task<IActionResult> SendRequest(string endpointType);
+        Task<HttpResponseMessage> SendRequest(string endpointType, RequestModel model);
+        Task<HttpResponseMessage> SendRequest(string endpointType);
     }
 
     public class Shared : IShared
@@ -19,7 +20,7 @@ namespace PublicAPIs
         {
             _client = httpClientFactory.CreateClient();
         }
-        public async Task<IActionResult> SendRequest(string endpointType, RequestModel model)
+        public async Task<HttpResponseMessage> SendRequest(string endpointType, RequestModel model)
         {
             string url = $"https://api.publicapis.org/{endpointType}?";
 
@@ -33,15 +34,21 @@ namespace PublicAPIs
 
             HttpResponseMessage response = await _client.GetAsync(url);
             string result = await response.Content.ReadAsStringAsync();
-            return new OkObjectResult(result);
+            return new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new StringContent(result, Encoding.UTF8, "application/json")
+            };
         }
-        public async Task<IActionResult> SendRequest(string endpointType)
+        public async Task<HttpResponseMessage> SendRequest(string endpointType)
         {
             string url = $"https://api.publicapis.org/{endpointType}";
 
             HttpResponseMessage response = await _client.GetAsync(url);
             string result = await response.Content.ReadAsStringAsync();
-            return new OkObjectResult(result);
+            return new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new StringContent(result, Encoding.UTF8, "application/json")
+            };
         }
     }
 }
