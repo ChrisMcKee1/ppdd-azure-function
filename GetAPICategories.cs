@@ -6,6 +6,8 @@ using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Attributes;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System.Net;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace PublicAPIs
@@ -28,7 +30,10 @@ namespace PublicAPIs
             ILogger log
         )
         {
-            return await _shared.SendRequest("categories");
+            IActionResult result = await _shared.SendRequest("categories");
+            StringContent json = new(result.ToString(), Encoding.UTF8, "application/json");
+
+            return new OkObjectResult(json);
         }
     }
 }

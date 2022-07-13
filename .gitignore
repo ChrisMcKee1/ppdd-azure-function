@@ -265,3 +265,8 @@ paket-files/
 __pycache__/
 *.pyc
 Properties/PublishProfiles/ppdd1 - Zip Deploy.pubxml
+.vscode/extensions.json
+.vscode/launch.json
+Properties/PublishProfiles/fnapptv3qord3tf3uy - Zip Deploy.pubxml
+.vscode/tasks.json
+.vscode/settings.json
