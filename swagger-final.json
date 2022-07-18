@@ -1,13 +1,13 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "OpenAPI Document on Azure Functions",
+    "title": "Public API",
     "version": "1.0.0"
   },
-  "host": "Enter your host here",
+  "host": "fnapptv3qord3tf3uy.azurewebsites.net",
   "basePath": "/api",
   "schemes": [
-    "http"
+    "http", "https"
   ],
   "paths": {
     "/GetAPICategory": {
@@ -15,7 +15,8 @@
         "tags": [
           "Public APIs"
         ],
-        "operationId": "Run",
+        "operationId": "Category",
+        "summary": "Get Category",
         "produces": [
           "Application/json"
         ],
@@ -34,7 +35,8 @@
         "tags": [
           "Public APIs"
         ],
-        "operationId": "Run",
+        "operationId": "Random",
+        "summary": "Get Random",
         "produces": [
           "Application/json"
         ],
@@ -91,7 +93,8 @@
         "tags": [
           "Public APIs"
         ],
-        "operationId": "Run",
+        "operationId": "List-APIs",
+        "summary": "Get Public APIs",
         "produces": [
           "Application/json"
         ],
