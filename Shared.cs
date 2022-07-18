@@ -8,8 +8,8 @@ namespace PublicAPIs
 {
     public interface IShared
     {
-        Task<HttpResponseMessage> SendRequest(string endpointType, RequestModel model);
-        Task<HttpResponseMessage> SendRequest(string endpointType);
+        Task<HttpResponseMessage> SendRequest(string endpoint, RequestModel model);
+        Task<HttpResponseMessage> SendRequest(string endpoint);
     }
 
     public class Shared : IShared
@@ -20,9 +20,9 @@ namespace PublicAPIs
         {
             _client = httpClientFactory.CreateClient();
         }
-        public async Task<HttpResponseMessage> SendRequest(string endpointType, RequestModel model)
+        public async Task<HttpResponseMessage> SendRequest(string endpoint, RequestModel model)
         {
-            string url = $"https://api.publicapis.org/{endpointType}?";
+            string url = $"https://api.publicapis.org/{endpoint}?";
 
             url = model.title is null ? url : $"{url}title={model.title.Trim().ToLower()}&";
             url = model.description is null ? url : $"{url}description={model.description.Trim().ToLower()}&";
@@ -34,9 +34,9 @@ namespace PublicAPIs
 
             return await SendRequest(url);
         }
-        public async Task<HttpResponseMessage> SendRequest(string endpointType)
+        public async Task<HttpResponseMessage> SendRequest(string endpoint)
         {
-            string url = endpointType.StartsWith("https://api.publicapis.org/") ? endpointType : $"https://api.publicapis.org/{endpointType}";
+            string url = endpoint.StartsWith("https://api.publicapis.org/") ? endpoint : $"https://api.publicapis.org/{endpoint}";
 
             HttpResponseMessage response = await _client.GetAsync(url);
             string result = await response.Content.ReadAsStringAsync();
